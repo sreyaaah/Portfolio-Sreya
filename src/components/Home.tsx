@@ -51,7 +51,7 @@ const Home: React.FC = () => {
             transition={{ delay: 1 }}
           >
             <a
-              href="./Sreya-Vijayan-K.pdf" // Replace with the actual path or URL to your resume
+              href="/Sreya-Vijayan-K.pdf" // Replace with the actual path or URL to your resume
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-medium hover:shadow-xl transition-all transform hover:-translate-y-1"
