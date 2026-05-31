@@ -1,204 +1,138 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaBriefcase, FaGraduationCap, FaCertificate } from "react-icons/fa";
 
-const EducationAndExperience: React.FC = () => {
-  const timeline = [
-    {
-      title: "Master of Computer Applications",
-      institution: "Cochin University of Science and Technology",
-      duration: "2026",
-      gpa: "",
-      category: "Education",
-      icon: "🎓",
-    },
-    {
-      title: "AI/ML Intern - Elevate Labs",
-      institution: "",
-      duration: "2026",
-      description: "Developed and fine-tuned a machine learning model for a movie recommendation system, improving relevance of suggestions. Applied data preprocessing and analysis techniques using Python libraries (Pandas, NumPy) to clean and prepare datasets.",
-      category: "Experience",
-      icon: "🤖",
-    },
-    {
-      title: "Bachelor of Science in Mathematics",
-      institution: "Mahatma Gandhi College, Kannur University",
-      duration: "2024",
-      gpa: "",
-      category: "Education",
-      icon: "📊",
-    },
-  ];
+type TimelineItem = {
+  type: "work" | "education" | "cert";
+  title: string;
+  org: string;
+  period: string;
+  detail?: string;
+  tags?: string[];
+};
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.4,
-        delayChildren: 0.3,
-      },
-    },
-  };
+const timeline: TimelineItem[] = [
+  {
+    type: "work",
+    title: "Software Developer Intern",
+    org: "Weberfox Technologies",
+    period: "Dec 2025 – Apr 2026",
+    detail: "Delivered production ERP modules using React.js + TypeScript. Engineered RESTful APIs with Node.js/Express.js. Built responsive dashboards ensuring cross-browser consistency.",
+    tags: ["React", "TypeScript", "Node.js", "MongoDB"],
+  },
+  {
+    type: "education",
+    title: "Master of Computer Applications (MCA)",
+    org: "Cochin University of Science and Technology",
+    period: "Jul 2024 – Apr 2026",
+    detail: "GPA: 8.80 / 10",
+    tags: ["Full Stack", "DBMS", "Algorithms", "Software Engineering"],
+  },
+  {
+    type: "education",
+    title: "B.Sc. Mathematics",
+    org: "Mahatma Gandhi College, Kannur University",
+    period: "Oct 2021 – May 2024",
+    detail: "GPA: 9.32 / 10",
+    tags: ["Analytics", "Problem Solving", "Statistics"],
+  },
+  {
+    type: "cert",
+    title: "Microsoft Full-Stack Developer Professional",
+    org: "Coursera",
+    period: "2026",
+    tags: [".NET", "Azure", "React"],
+  },
+  {
+    type: "cert",
+    title: "Data Structures and Algorithms",
+    org: "Coursera",
+    period: "2026",
+    tags: ["DSA", "Problem Solving"],
+  },
+];
 
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 50,
-      scale: 0.8 
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut" as const,
-      },
-    },
-  };
+const iconMap = {
+  work: { icon: FaBriefcase, bg: "bg-violet-500/20 border-violet-500/40", text: "text-violet-400" },
+  education: { icon: FaGraduationCap, bg: "bg-blue-500/20 border-blue-500/40", text: "text-blue-400" },
+  cert: { icon: FaCertificate, bg: "bg-emerald-500/20 border-emerald-500/40", text: "text-emerald-400" },
+};
 
-  const iconVariants = {
-    hidden: { scale: 0, rotate: -180 },
-    visible: { 
-      scale: 1, 
-      rotate: 0,
-      transition: { 
-        type: "spring" as const, 
-        stiffness: 200, 
-        delay: 0.5 
-      }
-    },
-    hover: {
-      scale: 1.2,
-      rotate: 360,
-      transition: { duration: 0.5 }
-    }
-  };
-
+const Education: React.FC = () => {
   return (
-    <motion.section
-      id="education"
-      className="py-20 px-6 bg-gradient-to-b from-gray-900 to-black min-h-screen"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      viewport={{ once: true }}
-    >
-      <div className="max-w-6xl mx-auto">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Education & Experience
-        </motion.h2>
-        
-        <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-pink-500 to-purple-600 hidden md:block"></div>
-          
-          {timeline.map((item, index) => (
-            <motion.div
-              key={index}
-              className={`mb-16 flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center justify-between`}
-              variants={itemVariants}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              {/* Content Card */}
+    <section id="education" className="w-full max-w-4xl py-14 scroll-mt-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-16"
+      >
+        <p className="text-violet-400 text-sm font-semibold tracking-widest uppercase mb-3">My path</p>
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-white">Journey</h2>
+        <div className="mt-4 h-1 w-16 bg-gradient-to-r from-violet-500 to-blue-500 rounded-full" />
+      </motion.div>
+
+      <div className="relative">
+        {/* Vertical line */}
+        <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/30 via-white/5 to-transparent" />
+
+        <div className="flex flex-col gap-6">
+          {timeline.map((item, i) => {
+            const { icon: Icon, bg, text } = iconMap[item.type];
+            return (
               <motion.div
-                className={`w-full md:w-5/12 p-8 bg-gray-800/50 rounded-xl shadow-2xl border border-gray-700 hover:border-pink-500 transition-all duration-300 group ${
-                  index % 2 === 0 ? "md:mr-8" : "md:ml-8"
-                }`}
-                whileHover={{ 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(236, 72, 153, 0.2)"
-                }}
+                key={i}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="relative pl-16"
               >
-                {/* Category Badge */}
-                <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold mb-4 ${
-                  item.category === "Education" 
-                    ? "bg-pink-500/20 text-pink-400" 
-                    : "bg-purple-500/20 text-purple-400"
-                }`}>
-                  <span className="mr-2">{item.icon}</span>
-                  {item.category}
+                {/* Icon dot on timeline */}
+                <div className={`absolute left-0 top-4 w-10 h-10 rounded-xl border flex items-center justify-center ${bg} ${text}`}>
+                  <Icon size={16} />
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-pink-500 transition-colors">
-                  {item.title}
-                </h3>
-                
-                {item.institution && (
-                  <p className="text-lg text-gray-300 mb-2 font-medium">
-                    {item.institution}
-                  </p>
-                )}
-                
-                {item.gpa && (
-                  <p className="text-purple-400 font-semibold mb-4">{item.gpa}</p>
-                )}
-                
-                {item.description && (
-                  <p className="text-gray-400 leading-relaxed mt-4 text-base">
-                    {item.description}
-                  </p>
-                )}
+                {/* Card */}
+                <motion.div
+                  whileHover={{ x: 6, scale: 1.005, boxShadow: "0 10px 30px -10px rgba(139, 92, 246, 0.15)" }}
+                  className="glass rounded-2xl p-6 hover:border-white/10 transition-all duration-300 hover:glow-sm group cursor-default"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                    <div>
+                      <h3 className="text-white font-bold text-lg group-hover:text-gradient transition-all">{item.title}</h3>
+                      <p className={`font-medium text-sm mt-0.5 ${text}`}>{item.org}</p>
+                    </div>
+                    <span className="flex-shrink-0 text-xs font-semibold text-slate-500 bg-white/5 border border-white/8 px-3 py-1.5 rounded-lg self-start">
+                      {item.period}
+                    </span>
+                  </div>
 
-                {/* Duration */}
-                <div className="mt-6 pt-4 border-t border-gray-600">
-                  <span className="text-pink-500 font-bold text-lg">
-                    {item.duration}
-                  </span>
-                </div>
+                  {item.detail && (
+                    <p className="text-slate-400 text-sm leading-relaxed mb-4">{item.detail}</p>
+                  )}
+
+                  {item.tags && (
+                    <div className="flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <motion.span
+                          key={tag}
+                          whileHover={{ y: -2, scale: 1.05, borderColor: "rgba(139, 92, 246, 0.3)", color: "#c084fc", backgroundColor: "rgba(139, 92, 246, 0.05)" }}
+                          className="px-2.5 py-1 bg-white/5 text-slate-500 text-xs rounded-md font-mono border border-white/5 cursor-default transition-all duration-200"
+                        >
+                          {tag}
+                        </motion.span>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
               </motion.div>
-
-              {/* Timeline Icon - Visible on desktop */}
-              <motion.div
-                className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-16 h-16 items-center justify-center bg-gradient-to-r from-pink-500 to-purple-600 rounded-full text-white text-2xl shadow-2xl border-4 border-gray-900"
-                variants={iconVariants}
-                whileHover="hover"
-              >
-                {item.icon}
-              </motion.div>
-
-              {/* Timeline Icon - Visible on mobile */}
-              <div className="md:hidden flex items-center justify-center w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full text-white text-lg mb-4 shadow-lg border-2 border-gray-900">
-                {item.icon}
-              </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
-
-        {/* Additional decorative elements */}
-        <motion.div
-          className="absolute top-20 left-10 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.2, 0.4],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
       </div>
-    </motion.section>
+    </section>
   );
 };
 
-export default EducationAndExperience;
+export default Education;

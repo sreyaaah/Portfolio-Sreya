@@ -1,107 +1,137 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Typewriter } from "react-simple-typewriter";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
-import Pic from "../assets/pic.jpg";
+import { FaLinkedin, FaGithub, FaEnvelope, FaArrowDown } from "react-icons/fa";
+import profilePic from "../assets/pic.jpg";
 
 const Home: React.FC = () => {
-  const icons = [
-    { Icon: FaEnvelope, href: "mailto:sreyavijayan17@gmail.com", label: "Email" }, // Replace with your email
-    { Icon: FaPhone, href: "tel:+919744065606", label: "Phone" }, // Replace with your phone number
-    { Icon: FaLinkedin, href: "https://www.linkedin.com/in/sreya-vijayan-k/", label: "LinkedIn" }, // Replace with your LinkedIn URL
-    { Icon: FaGithub, href: "https://github.com/sreyaaah", label: "GitHub" }, // Already provided in your code
-  ];
-
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-6 pt-20 bg-gradient-to-br from-black to-gray-900 scroll-mt-20" // Added scroll-mt-20 for navbar offset
+      className="min-h-screen w-full max-w-6xl flex flex-col justify-center pt-20 pb-10 scroll-mt-0"
     >
-      <motion.div
-        className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-            Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-              Sreya
-            </span>
-          </h2>
-          <h3 className="text-2xl text-gray-400 mb-8">
-            <Typewriter
-              words={["Full-Stack Developer", "ML Enthusiast", "Python", "Java"]}
-              loop={0}
-              cursor
-              cursorStyle="|"
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={1000}
-            />
-          </h3>
-          <p className="text-gray-300 mb-4 text-lg max-w-md">
-            Explore my skills and projects through my resume, or reach out to collaborate!
-          </p>
+      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        {/* Text Block */}
+        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+        
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] mb-4"
+          >
+            <span className="text-white">Hi, I'm </span>
+            <span className="text-gradient">Sreya</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-2xl sm:text-3xl font-semibold text-slate-300 mb-6"
+          >
+            Full-Stack Developer
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-slate-400 text-lg max-w-xl leading-relaxed mb-10"
+          >
+            I architect scalable enterprise systems and craft fluid user experiences — bridging the gap between robust backend logic and beautiful frontends using{" "}
+            <span className="text-violet-400 font-medium">MERN stack</span> &amp;{" "}
+            <span className="text-blue-400 font-medium">.NET ecosystem</span>.
+          </motion.p>
+
           <motion.div
-            className="flex flex-wrap gap-4 mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap gap-3 justify-center lg:justify-start"
           >
             <a
-              href="/Sreya-Vijayan-K.pdf" // Replace with the actual path or URL to your resume
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-medium hover:shadow-xl transition-all transform hover:-translate-y-1"
-            >
-              View Resume
-            </a>
-            <a
               href="#contact"
-              className="px-6 py-3 bg-gray-800 text-gray-200 rounded-lg font-medium border-2 border-gray-700 hover:border-pink-500 hover:text-pink-500 transition-all"
+              className="group flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg shadow-violet-600/30"
             >
-              Contact
+              <FaEnvelope className="group-hover:rotate-12 transition-transform" />
+              Get In Touch
             </a>
             <a
-              href="https://github.com/sreyaaah"
+              href="/resume.pdf"
+              download="Sreya_Vijayan_Resume.pdf" 
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-gray-800 text-gray-200 rounded-lg font-medium border-2 border-gray-700 hover:border-pink-500 hover:text-pink-500 transition-all"
+              className="group flex items-center gap-2 px-6 py-3 glass text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 hover:border-white/20"
             >
-              View GitHub
+              <FaArrowDown className="group-hover:translate-y-0.5 transition-transform" />
+              Resume
             </a>
           </motion.div>
 
-          <div className="flex space-x-4">
-            {icons.map(({ Icon, href, label }, i) => (
-              <motion.a
-                key={i}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="flex gap-3 mt-8 justify-center lg:justify-start"
+          >
+            {[
+              { icon: FaLinkedin, href: "https://linkedin.com/in/sreya-vijayan-k", label: "LinkedIn", color: "hover:text-blue-400 hover:border-blue-400/30", newTab: true },
+              { icon: FaGithub, href: "https://github.com/sreyaaah", label: "GitHub", color: "hover:text-slate-100 hover:border-white/30", newTab: true },
+              { icon: FaEnvelope, href: "mailto:sreyavijayan17@gmail.com", label: "Email", color: "hover:text-violet-400 hover:border-violet-400/30", newTab: false },
+            ].map(({ icon: Icon, href, label, color, newTab }) => (
+              <a
+                key={label}
                 href={href}
-                target={href.startsWith("http") ? "_blank" : "_self"} // Open external links in new tab
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                title={label} // Accessibility: Add tooltip for screen readers
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                className="p-3 bg-gray-800 rounded-full shadow-md hover:shadow-lg transition-all hover:text-pink-500"
+                {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                aria-label={label}
+                className={`w-11 h-11 glass rounded-xl flex items-center justify-center text-slate-500 transition-all duration-200 hover:scale-110 ${color}`}
               >
-                <Icon className="w-5 h-5" />
-              </motion.a>
+                <Icon size={18} />
+              </a>
             ))}
-          </div>
+          </motion.div>
         </div>
 
+        {/* Profile Image */}
         <motion.div
-          className="relative w-full flex justify-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+          className="flex-shrink-0 relative"
         >
-          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-2xl border-4 border-pink-500">
-            <img src={Pic} alt="Sreya Vijayan" className="w-full h-full object-cover" />
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-violet-500/30 via-blue-500/20 to-emerald-500/20 blur-2xl scale-110" />
+            {/* Decorative border */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-violet-500/50 to-blue-500/50 p-[1px]">
+              <div className="w-full h-full rounded-3xl bg-[#0f0f1a]" />
+            </div>
+            {/* Actual image */}
+            <img
+              src={profilePic}
+              alt="Sreya Vijayan"
+              className="absolute inset-0 w-full h-full object-cover rounded-3xl"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+            {/* Subtle corner accent */}
+            <div className="absolute -bottom-3 -right-3 w-16 h-16 bg-violet-500/20 rounded-2xl border border-violet-500/30 glass" />
+            <div className="absolute -top-3 -left-3 w-10 h-10 bg-blue-500/20 rounded-xl border border-blue-500/30 glass" />
           </div>
-          <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-pink-500 rounded-full opacity-30 blur-2xl animate-pulse"></div>
-          <div className="absolute -top-6 -left-6 w-16 h-16 bg-purple-500 rounded-full opacity-30 blur-2xl animate-pulse"></div>
+        </motion.div>
+      </div>
+
+      {/* Scroll hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="mt-16 flex flex-col items-center gap-2 text-slate-600"
+      >
+        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+          <FaArrowDown size={12} />
         </motion.div>
       </motion.div>
     </section>
