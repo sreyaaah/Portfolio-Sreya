@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute top-full left-0 right-0 mt-2 bg-[#0f0f1a] border border-white/10 rounded-2xl p-2 flex flex-col gap-1 sm:hidden"
+              className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-[#0f0f1a] border border-white/10 rounded-2xl p-2 flex flex-col gap-1 sm:hidden shadow-xl shadow-black/50"
             >
               {navItems.map((item) => (
                 <button
